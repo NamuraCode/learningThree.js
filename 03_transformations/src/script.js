@@ -10,44 +10,68 @@ const scene = new THREE.Scene()
 /**
  * Objects
  */
-const geometry = new THREE.BoxGeometry(1, 1, 1)
-const material = new THREE.MeshBasicMaterial({
-    color: 0xff0000
-})
-const mesh = new THREE.Mesh(geometry, material)
-// Move objects
-// mesh.position.x= 0
-// mesh.position.y= 1
-// mesh.position.z= 1
-// Other form for set the position is using the method .set(x, y, z)
-mesh.position.set(0.9, -0.6, 1)
-// Freezing the location of the object 3d
-mesh.position.normalize()
-// Then console.log
-console.log(mesh.position.length())
-// Know the distance between two objects
-// console.log(mesh.position.distanceTo())
+const group = new THREE.Group()
+scene.add(group)
 
-//Scale objects in three.js
-mesh.scale.x = .5
-mesh.scale.y = .9
-mesh.scale.z = 1
-// Is the same this method
-// Mesh.scale.set( x, y, z)
+const box1 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+)
+group.add(box1)
 
-// Rotation objects in three.js
-// Rotation is in EULER
-mesh.rotation.x = .5
-mesh.rotation.y = Math.PI / 2
-mesh.rotation.z = 1
-// is the same this method
-// If i want a rotation complete in one axis, i nedd put the "pi" number
-// mesh.rotation.set( x, y, z)
+const box2 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0xff0000 })
+)
+group.add(box2)
 
-//Change the order axis before of rotations setup
-mesh.rotation.reorder("ZXY")
+box2.position.x = 2
 
-scene.add(mesh)
+const box3 = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({ color: 0x0000ff })
+)
+group.add(box3)
+
+box3.position.x = -2
+// const geometry = new THREE.BoxGeometry(1, 1, 1)
+// const material = new THREE.MeshBasicMaterial({
+//     color: 0xff0000
+// })
+// const mesh = new THREE.Mesh(geometry, material)
+// // Move objects
+// // mesh.position.x= 0
+// // mesh.position.y= 1
+// // mesh.position.z= 1
+// // Other form for set the position is using the method .set(x, y, z)
+// mesh.position.set(0.9, -0.6, 1)
+// // Freezing the location of the object 3d
+// mesh.position.normalize()
+// // Then console.log
+// console.log(mesh.position.length())
+// // Know the distance between two objects
+// // console.log(mesh.position.distanceTo())
+
+// //Scale objects in three.js
+// mesh.scale.x = .5
+// mesh.scale.y = .9
+// mesh.scale.z = 1
+// // Is the same this method
+// // Mesh.scale.set( x, y, z)
+
+// // Rotation objects in three.js
+// // Rotation is in EULER
+// mesh.rotation.x = .5
+// mesh.rotation.y = Math.PI / 2
+// mesh.rotation.z = 1
+// // is the same this method
+// // If i want a rotation complete in one axis, i nedd put the "pi" number
+// // mesh.rotation.set( x, y, z)
+
+// //Change the order axis before of rotations setup
+// mesh.rotation.reorder("ZXY")
+
+// scene.add(mesh)
 
 // AxesHelper for see the axis x y and z
 const axesHelper = new THREE.AxesHelper(5)
@@ -68,12 +92,12 @@ const sizes = {
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height)
 camera.position.z = 4
 // know the distance
-console.log(mesh.position.distanceTo(camera.position))
+// console.log(mesh.position.distanceTo(camera.position))
 scene.add(camera)
 
 // Look at, for center the camera in one object pre selected
 // For the center of the scene in a new object vector3  new THREE.Vector3(x, y, z)
-camera.lookAt(mesh.position)
+// camera.lookAt(mesh.position)
 
 /**
  * Renderer
