@@ -11,6 +11,9 @@ const scene = new THREE.Scene()
  * Objects
  */
 const group = new THREE.Group()
+group.scale.y = 2
+group.position.y = 0
+group.rotation.y = 2
 scene.add(group)
 
 const box1 = new THREE.Mesh(
