@@ -43,15 +43,49 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 // Rendering in the function whit window.requestAnimationFrame
 
-// animation whit the time
+// animation whit the time, create one object type date
+// let time = Date.now()
+
+// animate whit clock three.js object 
+// const clock = new THREE.Clock()
+
+// 4
+// gsap
+
+gsap.to(mesh.rotation, { duration:1, delay:1, y:6 } )
 
 const tick = () =>
-{
+{   
+    // 1
+    // time current
+    // const currentTime = Date.now() 
+    // What time does it does wait for iteraction 
+    // const deltaTime = currentTime -time
+    // Set time whit the new time
+    // time = currentTime
+    // console.log(deltaTime);
+
+    // 2
     // Here we can play whit object tranformations
     // rotation mesh in y and z whit the method math cos and sin
-    mesh.rotation.y += (Math.cos(1) / 6) /4
-    mesh.rotation.z += (Math.sin(1) / 8) /4
-    
+    // mesh.rotation.y += (Math.cos(1) / 6) /4 
+    // mesh.rotation.z += (Math.sin(1) / 8) /4
+
+    //3
+    // const elapsedTime = clock.getElapsedTime()
+    // the same but, whit the deltaTime
+    // mesh.rotation.y += elapsedTime * .0002
+    // mesh.rotation.z += elapsedTime * .0002
+    // see what do it do Math.cos Math.sin
+    // mesh.position.y = Math.cos(elapsedTime)
+    // mesh.rotation.y = Math.cos(elapsedTime)
+    // mesh.rotation.z = Math.sin(elapsedTime)
+    // // i can do this whit the camera too
+    // camera.position.y = Math.cos(elapsedTime)
+    // camera.rotation.y = Math.cos(elapsedTime)
+    // camera.rotation.z = Math.sin(elapsedTime)
+    // camera.lookAt(mesh.position)
+
     // Render
     renderer.render(scene, camera)
 
