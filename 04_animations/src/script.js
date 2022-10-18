@@ -47,12 +47,12 @@ renderer.setSize(sizes.width, sizes.height)
 // let time = Date.now()
 
 // animate whit clock three.js object 
-// const clock = new THREE.Clock()
+const clock = new THREE.Clock()
 
 // 4
 // gsap
 
-gsap.to(mesh.rotation, { duration:1, delay:1, y:6 } )
+// gsap.to(mesh.rotation, { duration:1, delay:1, y:6 } )
 
 const tick = () =>
 {   
@@ -72,14 +72,14 @@ const tick = () =>
     // mesh.rotation.z += (Math.sin(1) / 8) /4
 
     //3
-    // const elapsedTime = clock.getElapsedTime()
+    const elapsedTime = clock.getElapsedTime()
     // the same but, whit the deltaTime
     // mesh.rotation.y += elapsedTime * .0002
     // mesh.rotation.z += elapsedTime * .0002
     // see what do it do Math.cos Math.sin
-    // mesh.position.y = Math.cos(elapsedTime)
-    // mesh.rotation.y = Math.cos(elapsedTime)
-    // mesh.rotation.z = Math.sin(elapsedTime)
+    mesh.position.y = Math.cos(elapsedTime)
+    mesh.rotation.y = Math.cos(elapsedTime)
+    mesh.rotation.z = Math.sin(elapsedTime)
     // // i can do this whit the camera too
     // camera.position.y = Math.cos(elapsedTime)
     // camera.rotation.y = Math.cos(elapsedTime)
