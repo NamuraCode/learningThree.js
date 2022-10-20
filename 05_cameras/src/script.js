@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
-
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+console.log(OrbitControls);
 /**
  * Cursor Event
  */
@@ -57,6 +58,12 @@ scene.add(mesh)
 // Controls whit the mouse ( events )
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, .1, 100)
 
+// camera.position.x = 2
+// camera.position.y = 2
+camera.position.z = 3
+camera.lookAt(mesh.position)
+scene.add(camera)
+
 // CONTROLS
 // flyControl
 // FirtsPersonControl not for fps games
@@ -65,16 +72,20 @@ const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, .1, 1
 // TrackBallControls whiout vertical limit
 // TransformControls 3d editor
 // DragControls, move objects
+// For use the controls, need take in the modules, three.js don´t have controls cameras
+// import { OrbitControls } from 'path modules'
 
-// camera.position.x = 2
-// camera.position.y = 2
-camera.position.z = 2
-camera.lookAt(mesh.position)
-scene.add(camera)
+// OrbitControls( camera, canvas )
+// comment the controls custome for use orbitcontrols
+const controls = new OrbitControls( camera, canvas )
+// controls.target.y = 2
+// controls.update()
+// enableDamping propety in true and update controls in tick function, see the documentation
+controls.enableDamping = true
 
 // Renderer
 const renderer = new THREE.WebGLRenderer({
-    canvas: canvas
+    canvas
 })
 renderer.setSize(sizes.width, sizes.height)
 
@@ -95,15 +106,17 @@ const tick = () =>
     // camera.position.z = Math.cos(cursor.x * 10) * 3
     // camera.position.y = cursor.y * 3
 
-    camera.position.x = Math.sin(cursor.x * Math.PI * 10) * 3
-    camera.position.z = Math.cos(cursor.x * Math.PI * 10) * 3
-    camera.position.y = cursor.y * 3
+    // camera.position.x = Math.sin(cursor.x * Math.PI * 10) * 3
+    // camera.position.z = Math.cos(cursor.x * Math.PI * 10) * 3
+    // camera.position.y = cursor.y * 3
 
     // OPTION 1
-    camera.lookAt(mesh.position)
+    // camera.lookAt(mesh.position)
     // OPTION 2
     // camera.lookAt(new THREE.Vector3())
-    
+
+    controls.update()
+
     // Render
     renderer.render(scene, camera)
 
